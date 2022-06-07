@@ -1,0 +1,20 @@
+body {
+	background-color: #4dbfd9;
+	font-family: 'Rubik', sans-serif;
+	color: #545454;
+	min-height: 100vh;
+	background: rgb(34, 193, 195);
+	background: linear-gradient(
+		0deg,
+		rgba(34, 193, 195, 0.38697485830269607) 0%,
+		rgba(255, 241, 210, 0.8463586118040967) 100%
+	);
+}
+
+h1 {
+	font-size: 28px;
+}
+
+section {
+	padding: 25px;
+}

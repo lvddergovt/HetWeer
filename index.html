@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>☔ Het Weer</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="/css/cssReset.css" />
+		<link rel="stylesheet" href="/css/styles.css" />
+	</head>
+	<body>
+		<section>
+			<h1>Het Weer</h1>
+		</section>
+
+    <section>
+      <input type="text" id="cityInput" placeholder="Your location">
+      <button type="button" id="searchBtn">Search</button>
+    </section>
+
+    <section>
+      <p id="errorMessage"></p>
+    </section>
+
+    <section>
+      <h2 id="location"></h2>
+      <p id="temperature">-</p>
+      <p id="conditions">Weer</p>
+      <p>Neerslagkans</p>
+      <p id="windSpeed">Windkracht</p>
+    </section>
+
+		<script src="/js/config.js"></script>
+		<script src="/js/weatherApp.js"></script>
+		<script src="/js/themeSwitch.js"></script>
+	</body>
+</html>
