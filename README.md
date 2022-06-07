@@ -1,2 +1,2 @@
-# HetWeer
-A school assignment
+# Het Weer
+Een school opdracht
