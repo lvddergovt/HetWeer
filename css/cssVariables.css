@@ -1,0 +1,13 @@
+/* Set color variables */
+:root {
+  /* Light mode colors */
+  --main-bg-color: #DFE0F2;
+  --main-text-color: #545454;
+  --primary: #5C679B;
+  --secondary: #F9B6A7;
+
+  /* Dark mode colors */
+  --main-bg-color-darkmode: #282A36;
+  --main-text-color-darkmode: white;
+  --primary-darkmode: #FF7AC6;
+}

@@ -4,36 +4,89 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>☔ Het Weer</title>
+		<title>☔ MyWeather</title>
 		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" href="/css/cssReset.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/27f4bdbe51.js"
+			crossorigin="anonymous"
+		></script>
+		<!-- <link rel="stylesheet" href="/css/cssReset.css" /> -->
+		<link rel="stylesheet" href="/css/cssVariables.css" />
 		<link rel="stylesheet" href="/css/styles.css" />
+		<link rel="stylesheet" href="/css/darkmode.css" />
 	</head>
 	<body>
-		<section>
-			<h1>Het Weer</h1>
-		</section>
+		<main>
+			<div class="search-container">
+				<h1>MyWeather</h1>
 
-    <section>
-      <input type="text" id="cityInput" placeholder="Your location">
-      <button type="button" id="searchBtn">Search</button>
-    </section>
+				<form>
+					<input
+						type="text"
+						class="search"
+						id="cityInput"
+						placeholder="Your location"
+					/>
+					<button type="button" id="searchBtn">
+						<i class="fas fa-search"></i>Search
+					</button>
 
-    <section>
-      <p id="errorMessage"></p>
-    </section>
+					<p id="errorMessage"></p>
+				</form>
 
-    <section>
-      <h2 id="location"></h2>
-      <p id="temperature">-</p>
-      <p id="conditions">Weer</p>
-      <p>Neerslagkans</p>
-      <p id="windSpeed">Windkracht</p>
-    </section>
+				<button type="button" onclick="toggleDarkMode()">
+					<i class="fas fa-moon"></i>
+				</button>
+			</div>
+
+			<div class="info-container">
+				<!-- <svg
+					id="visual"
+					viewBox="0 0 900 600"
+					height="100%"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					version="1.1"
+				>
+					<path
+						d="M0 175L21.5 175.2C43 175.3 86 175.7 128.8 206C171.7 236.3 214.3 296.7 257.2 293.5C300 290.3 343 223.7 385.8 222.2C428.7 220.7 471.3 284.3 514.2 319C557 353.7 600 359.3 642.8 340.2C685.7 321 728.3 277 771.2 272.3C814 267.7 857 302.3 878.5 319.7L900 337L900 0L878.5 0C857 0 814 0 771.2 0C728.3 0 685.7 0 642.8 0C600 0 557 0 514.2 0C471.3 0 428.7 0 385.8 0C343 0 300 0 257.2 0C214.3 0 171.7 0 128.8 0C86 0 43 0 21.5 0L0 0Z"
+						fill="#F9B6A7"
+						stroke-linecap="round"
+						stroke-linejoin="miter"
+					></path>
+				</svg> -->
+
+				<div class="weather-data">
+          <div>
+            <svg class="top-wave" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#F9B6A7" d="M20.2,-26.6C29.3,-16.5,41.8,-13,47.7,-4.7C53.6,3.6,52.9,16.9,46.2,25C39.5,33.1,26.9,36.1,13.9,42.9C0.9,49.8,-12.5,60.5,-29.2,62.2C-45.9,64,-65.8,56.7,-66.1,44.1C-66.3,31.4,-46.8,13.3,-41.8,-6.1C-36.9,-25.4,-46.4,-46,-41.8,-56.9C-37.3,-67.9,-18.6,-69.2,-6.5,-61.4C5.6,-53.6,11.1,-36.8,20.2,-26.6Z" transform="translate(100 100)" />
+            </svg>
+            
+            <img src="" id="weatherIcon" alt="" style="width: 250px"/>
+          </div>
+          <h2>
+            <i class="fas fa-location-dot"></i>&nbsp;<span
+            id="location"
+            >-</span
+						>
+            <button onclick="saveLocation()"><i class="fas fa-star"></i></button>
+					</h2>
+					<p id="temperature">-</p>
+					<p id="conditions">-</p>
+				</div>
+
+        <svg class="bottom-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#F9B6A7" fill-opacity="1" d="M0,96L60,133.3C120,171,240,245,360,234.7C480,224,600,128,720,117.3C840,107,960,181,1080,213.3C1200,245,1320,235,1380,229.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+			</div>
+		</main>
 
 		<script src="/js/config.js"></script>
 		<script src="/js/weatherApp.js"></script>

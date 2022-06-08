@@ -2,49 +2,59 @@ const baseApiUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${conf
 
 // Define all interactable items
 const SELECTORS = {
-	searchButton: document.querySelector('#searchBtn'),
-	errorMessage: document.querySelector('#errorMessage'),
-	inputValue: document.querySelector('#cityInput').value,
+	searchButton: document.getElementById('searchBtn'),
+	errorMessage: document.getElementById('errorMessage'),
+	cityInput: document.getElementById('cityInput'),
 };
 
 // Define weather object properties
 const weatherData = {
-	location: document.querySelector('#location'),
-	temperature: document.querySelector('#temperature'),
-	windspeed: document.querySelector('#windSpeed'),
-	conditions: document.querySelector('#conditions'),
+	location: document.getElementById('location'),
+	temperature: document.getElementById('temperature'),
+	windspeed: document.getElementById('windSpeed'),
+	conditions: document.getElementById('conditions'),
+  weatherIcon: document.getElementById("weatherIcon")
 };
 
 // Document loaded
 document.addEventListener('DOMContentLoaded', function () {
 	// Look for location in localstorage
 	// if it exists, use this city in a fetch call
-	if (localStorage.getItem('location') != null) {
+	if (localStorage.getItem('location')) {
 		let savedLocation = localStorage.getItem('location');
 		const url = `${baseApiUrl}&q=${savedLocation}`;
 
 		fetchAndSetWeatherData(url);
 	} else {
 		// Try get user's current location
-		getWeatherFromUserLocation();
-
-    // Listen to button click for user input
-		SELECTORS.searchButton.addEventListener('click', function () {
-			console.log(SELECTORS.inputValue);
-			getWeatherFromUserInput();
-			SELECTORS.inputValue = '';
-		});
+		setWeatherFromUserLocation();
 	}
+
+   // Listen to button click for user input
+		SELECTORS.searchButton.addEventListener('click', function () {
+			setWeatherFromUserInput();
+			SELECTORS.cityInput.value = '';
+		});
+
 });
 
 
+SELECTORS.cityInput.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    SELECTORS.searchButton.click();
+  }
+}); 
 
-const getWeatherFromUserInput = () => {
-	const url = `${baseApiUrl}&q=${SELECTORS.inputValue}`;
+const setWeatherFromUserInput = () => {
+	const url = `${baseApiUrl}&q=${SELECTORS.cityInput.value}`;
 	fetchAndSetWeatherData(url);
 };
 
-const getWeatherFromUserLocation = () => {
+const setWeatherFromUserLocation = () => {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition((position) => {
 			let lon = position.coords.longitude;
@@ -63,6 +73,8 @@ const getWeatherFromUserLocation = () => {
 
 const fetchAndSetWeatherData = (url) => {
 	SELECTORS.errorMessage.innerHTML = '';
+  console.log('hoi')
+
 	fetch(url)
 		.then((response) => response.json())
 		.then((data) => {
@@ -75,12 +87,21 @@ const fetchAndSetWeatherData = (url) => {
 };
 
 
+// This method uses the fetched weather data to set the weather properties in HTML
 const setWeatherResultData = (data) => {
 	const { main, name, weather } = data;
 
-	weatherData.location.innerHTML = `Het weer in <span>${name}<span>`;
-	weatherData.conditions.innerHTML = weather[0].description;
-	weatherData.temperature.innerHTML = `${Math.round(main.temp)}&deg;C`;
+  const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
+    weather[0]["icon"]
+  }.svg`;
 
-	window.localStorage.setItem('location', name);
+  weatherData.weatherIcon.src = icon;
+	weatherData.location.innerHTML = name;
+	weatherData.conditions.innerHTML = weather[0].description;
+	weatherData.temperature.innerHTML = `${Math.round(main.temp)}&deg;`;
+  
 };
+
+const saveLocation = () => {
+	window.localStorage.setItem('location', weatherData.location.innerHTML);
+}

@@ -1,0 +1,17 @@
+
+body.dark-mode {
+  background-color: var(--main-bg-color-darkmode);
+  color: var(--main-text-color-darkmode);
+}
+
+.dark-mode #weatherIcon {
+  filter: invert(100%);
+}
+
+.dark-mode svg path{
+  fill: var(--primary)
+}
+
+.dark-mode .info-container {
+  background-color: #23252F;
+}
